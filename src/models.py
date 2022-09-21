@@ -39,12 +39,22 @@ class Character(Base):
     Planet =Column (String(250), ForeignKey('planets.id')) 
 
 
-class Favorites(Base):
-    __tablename__= 'favorites'
+class PlanetsFavorites(Base):
+    __tablename__= 'planetsfavorites'
     id = Column(Integer, primary_key=True)
-    User_id = Column(Integer, ForeignKey('user.id'), nullable=True)
-    Planet_id= Column(Integer, ForeignKey('planets.id'), nullable=True)
-    People_id= Column(Integer, ForeignKey('character.id'), nullable=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    planet_id= Column(Integer, ForeignKey('planets.id'), nullable=True)
+    
+
+
+class CharactersFavorites(Base):
+     __tablename__= 'charactersfavorites'
+    id = Column(Integer, primary_key=True)
+    user_id = db.Column(Integer, ForeignKey('user.id'))
+    character_id= Column(Integer, ForeignKey('character.id'), nullable=True)
+
+
+
     
 
 ## Draw from SQLAlchemy base
